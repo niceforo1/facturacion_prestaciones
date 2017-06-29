@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Alta</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen"/>
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/3.2.0/jquery.min.js"
+            th:src="@{/webjars/jquery/3.2.0/jquery.min.js}"></script>
+
+    <link href="../static/css/style.css"
+          th:href="@{../css/style.css}" rel="stylesheet" media="screen"/>
+</head>
+<body>
+<div th:replace="fragments/navbar :: navbar"/>
+
+<div class="container main-container">
+    <h3>Alta</h3>
+    <hr/>
+    <div>
+            <form class="form-horizontal" th:object="${profesionalForm}" th:action="@{/prof}" method="post">
+            <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                <span>Error <small>no se puede procesar su solicitud</small></span>
+                <!--<ul>
+                    <li th:each="err : ${#fields.errors('*')}" th:text="${err}"> Validation Error</li>
+                </ul>-->
+            </div>
+            <input type="hidden" th:field="*{id}"/>
+            <div class="form-group row" th:class="${#fields.hasErrors('nombre')} ? 'form-group row has-danger' : 'form-group row'">
+                <label class="col-sm-2 col-form-label">Nombre</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{nombre}" th:errorclass="has-danger"/>
+                    <div class="form-control-feedback"><span th:each="err: ${#fields.errors('nombre')}" th:text="${err}"/> </div>
+                </div>
+            </div>
+            <div class="form-group row" th:class="${#fields.hasErrors('apellido')} ? 'form-group row has-danger' : 'form-group row'">
+                <label class="col-sm-2 col-form-label">Apellido:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{apellido}" th:errorclass="has-danger"/>
+                    <div class="form-control-feedback"><span th:each="err: ${#fields.errors('apellido')}" th:text="${err}"/> </div>
+                </div>
+            </div>
+
+            <div class="form-group row" th:class="${#fields.hasErrors('dni')} ? 'form-group row has-danger' : 'form-group row'">
+                <label class="col-sm-2 col-form-label">Numero Documento:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{dni}" th:errorclass="has-danger"/>
+                    <div class="form-control-feedback"><span th:each="err: ${#fields.errors('dni')}" th:text="${err}"/> </div>
+                </div>
+            </div>
+
+
+            <div class="form-group row" th:class="${#fields.hasErrors('fechaNacimiento')} ? 'form-group row has-danger' : 'form-group row'">
+                <label class="col-sm-2 col-form-label">Fecha Nacimiento:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{fechaNacimiento}" th:errorclass="has-danger"/>
+                    <div class="form-control-feedback"><span th:each="err: ${#fields.errors('fechaNacimiento')}" th:text="${err}"/> </div>
+                </div>
+            </div>
+
+            <div class="form-group row" th:class="${#fields.hasErrors('telefono')} ? 'form-group row has-danger' : 'form-group row'">
+                <label class="col-sm-2 col-form-label">Telefono:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{telefono}" th:errorclass="has-danger"/>
+                    <div class="form-control-feedback"><span th:each="err: ${#fields.errors('telefono')}" th:text="${err}"/> </div>
+                </div>
+            </div>
+
+            <div class="form-group row" th:class="${#fields.hasErrors('telefono')} ? 'form-group row has-danger' : 'form-group row'">
+                <label class="col-sm-2 col-form-label">Celular Particular:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{celularPart}" th:errorclass="has-danger"/>
+                    <div class="form-control-feedback"><span th:each="err: ${#fields.errors('celularPart')}" th:text="${err}"/> </div>
+                </div>
+            </div>
+
+                <div class="form-group row" th:class="${#fields.hasErrors('mailParticular')} ? 'form-group row has-danger' : 'form-group row'">
+                <label class="col-sm-2 col-form-label">Mail Particular:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{mailParticular}" th:errorclass="has-danger"/>
+                    <div class="form-control-feedback"><span th:each="err: ${#fields.errors('mailParticular')}" th:text="${err}"/> </div>
+                </div>
+            </div>
+            <div class="form-group row" th:class="${#fields.hasErrors('denominacionLaboral')} ? 'form-group row has-danger' : 'form-group row'">
+                <label class="col-sm-2 col-form-label">Denominación Laboral:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{denominacionLaboral}" th:errorclass="has-danger"/>
+                    <div class="form-control-feedback"><span th:each="err: ${#fields.errors('denominacionLaboral')}" th:text="${err}"/> </div>
+                </div>
+            </div>
+            <div class="form-group row" th:class="${#fields.hasErrors('telefonoLaboral')} ? 'form-group row has-danger' : 'form-group row'">
+                <label class="col-sm-2 col-form-label">Telefono Laboral:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{telefonoLaboral}" th:errorclass="has-danger"/>
+                    <div class="form-control-feedback"><span th:each="err: ${#fields.errors('telefonoLaboral')}" th:text="${err}"/> </div>
+                </div>
+            </div>
+            <div class="form-group row" th:class="${#fields.hasErrors('celularLaboral')} ? 'form-group row has-danger' : 'form-group row'">
+                <label class="col-sm-2 col-form-label">Celular Laboral:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{celularLaboral}" th:errorclass="has-danger"/>
+                    <div class="form-control-feedback"><span th:each="err: ${#fields.errors('celularLaboral')}" th:text="${err}"/> </div>
+                </div>
+            </div>
+            <div class="form-group row" th:class="${#fields.hasErrors('mailLaboral')} ? 'form-group row has-danger' : 'form-group row'">
+                <label class="col-sm-2 col-form-label">Mail Laboral:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{mailLaboral}" th:errorclass="has-danger"/>
+                    <div class="form-control-feedback"><span th:each="err: ${#fields.errors('mailLaboral')}" th:text="${err}"/> </div>
+                </div>
+            </div>
+
+            <div class="form-group row main-container">
+                <button type="submit" class="btn btn-block  btn-outline-primary">Cargar</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
