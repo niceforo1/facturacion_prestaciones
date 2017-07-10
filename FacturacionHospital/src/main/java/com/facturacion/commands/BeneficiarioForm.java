@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.facturacion.model.Carnet;
 import com.facturacion.model.Parentesco;
 import com.facturacion.model.Sexo;
 import com.facturacion.model.TipoBeneficiario;
@@ -20,8 +21,8 @@ public class BeneficiarioForm {
 	@NotEmpty
 	private String documento;
 
-	@Min(value=1)	
-	private Long tipoDocumento;
+	
+	private TipoDocumento tipoDocumento;
 
 	@NotEmpty
 	private String nombre;
@@ -38,6 +39,8 @@ public class BeneficiarioForm {
 	private Parentesco parentesco;
 
 	private Sexo sexo;
+	
+	private Carnet carnet;
 
 	public Long getId() {
 		return id;
@@ -55,11 +58,11 @@ public class BeneficiarioForm {
 		this.documento = documento;
 	}
 
-	public Long getTipoDocumento() {
+	public TipoDocumento getTipoDocumento() {
 		return tipoDocumento;
 	}
 
-	public void setTipoDocumento(Long tipoDocumento) {
+	public void setTipoDocumento(TipoDocumento tipoDocumento) {
 		this.tipoDocumento = tipoDocumento;
 	}
 
@@ -116,6 +119,14 @@ public class BeneficiarioForm {
 		return "BeneficiarioForm [id=" + id + ", documento=" + documento + ", tipoDocumento=" + tipoDocumento
 				+ ", nombre=" + nombre + ", apellido=" + apellido + ", fechaNac=" + fechaNac + ", tipo=" + tipo
 				+ ", parentesco=" + parentesco + ", sexo=" + sexo + "]";
+	}
+
+	public Carnet getCarnet() {
+		return carnet;
+	}
+
+	public void setCarnet(Carnet carnet) {
+		this.carnet = carnet;
 	}
 	
 	

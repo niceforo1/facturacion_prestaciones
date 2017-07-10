@@ -1,32 +1,33 @@
 package com.facturacion.controllers;
 
-import java.util.ArrayList;
-import java.util.List;
 
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.facturacion.commands.BeneficiarioForm;
-import com.facturacion.model.TipoDocumento;
+import com.facturacion.serveces.TipoDocumentoService;
 
-import javassist.expr.NewArray;
 
 @Controller
 //@RequestMapping("/altabeneficiario")
 public class AltaBeneficiarioControler {
 
+	@Autowired
+	@Qualifier("tipoDocumentoServiceImple")
+	private TipoDocumentoService tipoDocumentoService;
+	
 	BeneficiarioForm beneficiarioForm = new BeneficiarioForm();
+	
 	@GetMapping("/formbeneficiario")
 	public String inicio(Model model) {
-		List<TipoDocumento> listaDoc = new ArrayList<>();
-		listaDoc.add(new TipoDocumento(1L, "DNI"));
-		model.addAttribute("lista", listaDoc);
+		model.addAttribute("lista", tipoDocumentoService.lstTipoDoc());
 		model.addAttribute("beneficiarioForm", beneficiarioForm);
 		return "/altaBeneficiario";
 	}
